@@ -1,0 +1,14 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+    // "eslint-plugin-import/order": [2, { "alphabetize": { "order": "asc" } }],
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     "trailingComma": "all",
+    //     "semi": false
+    //   }
+    // ]
+  }
+}
