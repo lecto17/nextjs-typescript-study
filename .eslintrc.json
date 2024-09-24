@@ -1,14 +1,10 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "react/react-in-jsx-scope": "off"
-    // "eslint-plugin-import/order": [2, { "alphabetize": { "order": "asc" } }],
-    // "prettier/prettier": [
-    //   "error",
-    //   {
-    //     "trailingComma": "all",
-    //     "semi": false
-    //   }
-    // ]
-  }
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended" // TypeScript 관련 권장 규칙 추가
+  ]
 }

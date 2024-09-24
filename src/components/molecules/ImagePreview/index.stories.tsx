@@ -74,7 +74,6 @@ const Template: StoryFn<typeof ImagePreview> = (args) => {
       }
     }
     setImages(newImages)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [files])
 
   const handleRemove = (src: string) => {
@@ -85,7 +84,9 @@ const Template: StoryFn<typeof ImagePreview> = (args) => {
       setFiles((files) => files.filter((file: File) => file !== image.file))
     }
 
-    args && args.onRemove && args.onRemove(src)
+    if (args && args.onRemove) {
+      args.onRemove(src)
+    }
   }
 
   return (

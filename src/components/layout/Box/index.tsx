@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+'use client'
 import { Responsive } from '@/types/styles'
 import { Color, Space, toPropValue } from '@/utils/styles'
 import styled from 'styled-components'

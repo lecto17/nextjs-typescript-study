@@ -55,14 +55,16 @@ const ImagePreview = ({
   const handleCloseClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
     e.stopPropagation()
-    onRemove && src && onRemove(src)
+
+    if (onRemove && src) {
+      onRemove(src)
+    }
 
     return false
   }
 
   return (
     <ImagePreviewContainer height={height} width={width}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} height={height} width={width} />
       <CloseBox
         alignItems="center"

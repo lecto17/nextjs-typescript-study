@@ -1,5 +1,4 @@
-/* eslint-disable prettier/prettier */
-import styled from 'styled-components'
+import styled from "styled-components";
 import {
   toPropValue,
   Color,
@@ -8,92 +7,92 @@ import {
   LineHeight,
   Space,
   AppTheme,
-} from '@/utils/styles'
-import { Responsive } from '@/types'
+} from "@/utils/styles";
+import { Responsive } from "@/types";
 
 // 버튼 변형
-export type ButtonVariant = 'primary' | 'secondary' | 'danger'
+export type ButtonVariant = "primary" | "secondary" | "danger";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: ButtonVariant
-  fontSize?: Responsive<FontSize>
-  fontWeight?: Responsive<string>
-  letterSpacing?: Responsive<LetterSpacing>
-  lineHeight?: Responsive<LineHeight>
-  textAlign?: Responsive<string>
-  color?: Responsive<Color>
-  backgroundColor?: Responsive<Color>
-  width?: Responsive<string>
-  height?: Responsive<string>
-  minWidth?: Responsive<string>
-  minHeight?: Responsive<string>
-  display?: Responsive<string>
-  border?: Responsive<string>
-  overflow?: Responsive<string>
-  margin?: Responsive<Space>
-  marginTop?: Responsive<Space>
-  marginRight?: Responsive<Space>
-  marginBottom?: Responsive<Space>
-  marginLeft?: Responsive<Space>
-  padding?: Responsive<Space>
-  paddingTop?: Responsive<Space>
-  paddingRight?: Responsive<Space>
-  paddingBottom?: Responsive<Space>
-  paddingLeft?: Responsive<Space>
+  variant?: ButtonVariant;
+  fontSize?: Responsive<FontSize>;
+  fontWeight?: Responsive<string>;
+  letterSpacing?: Responsive<LetterSpacing>;
+  lineHeight?: Responsive<LineHeight>;
+  textAlign?: Responsive<string>;
+  color?: Responsive<Color>;
+  backgroundColor?: Responsive<Color>;
+  width?: Responsive<string>;
+  height?: Responsive<string>;
+  minWidth?: Responsive<string>;
+  minHeight?: Responsive<string>;
+  display?: Responsive<string>;
+  border?: Responsive<string>;
+  overflow?: Responsive<string>;
+  margin?: Responsive<Space>;
+  marginTop?: Responsive<Space>;
+  marginRight?: Responsive<Space>;
+  marginBottom?: Responsive<Space>;
+  marginLeft?: Responsive<Space>;
+  padding?: Responsive<Space>;
+  paddingTop?: Responsive<Space>;
+  paddingRight?: Responsive<Space>;
+  paddingBottom?: Responsive<Space>;
+  paddingLeft?: Responsive<Space>;
   pseudoClass?: {
     hover?: {
-      backgroundColor?: Responsive<Color>
-    }
+      backgroundColor?: Responsive<Color>;
+    };
     disabled?: {
-      backgroundColor?: Responsive<Color>
-    }
-  }
-}
+      backgroundColor?: Responsive<Color>;
+    };
+  };
+};
 
 const variants = {
   // Primary
   primary: {
-    color: 'white',
-    backgroundColor: 'primary',
-    border: 'none',
+    color: "white",
+    backgroundColor: "primary",
+    border: "none",
     pseudoClass: {
       hover: {
-        backgroundColor: 'primaryDark',
+        backgroundColor: "primaryDark",
       },
       disabled: {
-        backgroundColor: 'primary',
+        backgroundColor: "primary",
       },
     },
   },
   // Secondary
   secondary: {
-    color: 'white',
-    backgroundColor: 'secondary',
-    border: 'none',
+    color: "white",
+    backgroundColor: "secondary",
+    border: "none",
     pseudoClass: {
       hover: {
-        backgroundColor: 'secondaryDark',
+        backgroundColor: "secondaryDark",
       },
       disabled: {
-        backgroundColor: 'secondary',
+        backgroundColor: "secondary",
       },
     },
   },
   // Danger
   danger: {
-    color: 'white',
-    backgroundColor: 'danger',
-    border: 'none',
+    color: "white",
+    backgroundColor: "danger",
+    border: "none",
     pseudoClass: {
       hover: {
-        backgroundColor: 'dangerDark',
+        backgroundColor: "dangerDark",
       },
       disabled: {
-        backgroundColor: 'danger',
+        backgroundColor: "danger",
       },
     },
   },
-}
+};
 
 /**
  * 버튼
@@ -101,98 +100,120 @@ const variants = {
  */
 const Button = styled.button<ButtonProps>`
   ${({ variant, color, backgroundColor, pseudoClass, theme }) => {
-    const finalTheme = theme as AppTheme
+    const finalTheme = theme as AppTheme;
     // 변형 스타일 적용
     if (variant && variants[variant]) {
-      const styles = []
-      !color &&
-        styles.push(toPropValue('color', variants[variant].color, finalTheme))
-      !backgroundColor &&
+      const styles = [];
+      if (!color) {
+        styles.push(toPropValue("color", variants[variant].color, finalTheme));
+      }
+      if (!backgroundColor) {
         styles.push(
           toPropValue(
-            'background-color',
+            "background-color",
             variants[variant].backgroundColor,
-            finalTheme,
-          ),
-        )
-      !pseudoClass &&
+            finalTheme
+          )
+        );
+      }
+      if (!pseudoClass) {
         styles.push(
           `&:hover {
             ${toPropValue(
-            'background-color',
-            variants[variant].pseudoClass.hover.backgroundColor,
-            finalTheme,
-          )}
-          }`.replaceAll('\n', ''),
-        )
-      !pseudoClass &&
+              "background-color",
+              variants[variant].pseudoClass.hover.backgroundColor,
+              finalTheme
+            )}
+          }`.replaceAll("\n", "")
+        );
+      }
+      if (!pseudoClass) {
         styles.push(
           `&:disabled {
             ${toPropValue(
-            'background-color',
-            variants[variant].pseudoClass.disabled.backgroundColor,
-            finalTheme,
-          )}
-          }`.replaceAll('\n', ''),
-        )
-      return styles.join('\n')
+              "background-color",
+              variants[variant].pseudoClass.disabled.backgroundColor,
+              finalTheme
+            )}
+          }`.replaceAll("\n", "")
+        );
+      }
+      return styles.join("\n");
     }
   }}
-  ${(props) => toPropValue('font-size', props.fontSize, props.theme as AppTheme)}
-  ${(props) => toPropValue('letter-spacing', props.letterSpacing, props.theme as AppTheme)}
-  ${(props) => toPropValue('line-height', props.lineHeight, props.theme as AppTheme)}
-  ${(props) => toPropValue('color', props.color, props.theme as AppTheme)}
-  ${(props) => toPropValue('background-color', props.backgroundColor, props.theme as AppTheme)}
-  ${(props) => toPropValue('width', props.width, props.theme as AppTheme)}
-  ${(props) => toPropValue('height', props.height, props.theme as AppTheme)}
-  ${(props) => toPropValue('min-width', props.minWidth, props.theme as AppTheme)}
-  ${(props) => toPropValue('min-height', props.minHeight, props.theme as AppTheme)}
-  ${(props) => toPropValue('display', props.display, props.theme as AppTheme)}
-  ${(props) => toPropValue('border', props.border, props.theme as AppTheme)}
-  ${(props) => toPropValue('overflow', props.overflow, props.theme as AppTheme)}
-  ${(props) => toPropValue('margin', props.margin, props.theme as AppTheme)}
-  ${(props) => toPropValue('margin-top', props.marginTop, props.theme as AppTheme)}
-  ${(props) => toPropValue('margin-left', props.marginLeft, props.theme as AppTheme)}
-  ${(props) => toPropValue('margin-bottom', props.marginBottom, props.theme as AppTheme)}
-  ${(props) => toPropValue('margin-right', props.marginRight, props.theme as AppTheme)}
-  ${(props) => toPropValue('padding', props.padding, props.theme as AppTheme)}
-  ${(props) => toPropValue('padding-top', props.paddingTop, props.theme as AppTheme)}
-  ${(props) => toPropValue('padding-left', props.paddingLeft, props.theme as AppTheme)}
-  ${(props) => toPropValue('padding-bottom', props.paddingBottom, props.theme as AppTheme)}
-  ${(props) => toPropValue('padding-right', props.paddingRight, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("font-size", props.fontSize, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("letter-spacing", props.letterSpacing, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("line-height", props.lineHeight, props.theme as AppTheme)}
+  ${(props) => toPropValue("color", props.color, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue(
+      "background-color",
+      props.backgroundColor,
+      props.theme as AppTheme
+    )}
+  ${(props) => toPropValue("width", props.width, props.theme as AppTheme)}
+  ${(props) => toPropValue("height", props.height, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("min-width", props.minWidth, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("min-height", props.minHeight, props.theme as AppTheme)}
+  ${(props) => toPropValue("display", props.display, props.theme as AppTheme)}
+  ${(props) => toPropValue("border", props.border, props.theme as AppTheme)}
+  ${(props) => toPropValue("overflow", props.overflow, props.theme as AppTheme)}
+  ${(props) => toPropValue("margin", props.margin, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("margin-top", props.marginTop, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("margin-left", props.marginLeft, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("margin-bottom", props.marginBottom, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("margin-right", props.marginRight, props.theme as AppTheme)}
+  ${(props) => toPropValue("padding", props.padding, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("padding-top", props.paddingTop, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("padding-left", props.paddingLeft, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("padding-bottom", props.paddingBottom, props.theme as AppTheme)}
+  ${(props) =>
+    toPropValue("padding-right", props.paddingRight, props.theme as AppTheme)}
   &:hover {
     ${(props) =>
-    toPropValue(
-      'background-color',
-      props?.pseudoClass?.hover?.backgroundColor,
-    )}
+      toPropValue(
+        "background-color",
+        props?.pseudoClass?.hover?.backgroundColor
+      )}
   }
   &:disabled {
     ${(props) =>
-    toPropValue(
-      'background-color',
-      props?.pseudoClass?.disabled?.backgroundColor,
-    )}
+      toPropValue(
+        "background-color",
+        props?.pseudoClass?.disabled?.backgroundColor
+      )}
   }
   cursor: pointer;
   outline: 0;
-  text-decoration: 'none';
-  opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
+  text-decoration: none;
+  opacity: ${({ disabled }) => (disabled ? "0.5" : "1")};
   border-radius: 4px;
   border: none;
-`
+`;
 
 Button.defaultProps = {
-  variant: 'primary',
+  variant: "primary",
   paddingLeft: 2,
   paddingRight: 2,
   paddingTop: 1,
   paddingBottom: 1,
-  color: 'white',
-  display: 'inline-block',
-  textAlign: 'center',
-  lineHeight: 'inherit',
-  fontSize: 'inherit',
-}
+  color: "white",
+  display: "inline-block",
+  textAlign: "center",
+  lineHeight: "inherit",
+  fontSize: "inherit",
+};
 
-export default Button
+export default Button;

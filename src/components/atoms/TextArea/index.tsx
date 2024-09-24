@@ -79,7 +79,9 @@ const TextArea = (props: TextAreaProps) => {
 
       // 최대를 넘지 않도록 행 수 초기화
       setTextareaRows(currentRows < maxRows ? currentRows : maxRows)
-      onChange && onChange(e)
+      if (onChange) {
+        onChange(e)
+      }
     },
     [onChange, minRows, maxRows],
   )

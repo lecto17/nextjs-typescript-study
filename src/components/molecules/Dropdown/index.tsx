@@ -166,7 +166,9 @@ const Dropdown = (props: DropdownProps) => {
 
     setSelectedItem(item)
     setIsOpenValue(false)
-    onChange && onChange(item)
+    if (onChange) {
+      onChange(item)
+    }
   }
 
   useEffect(() => {
@@ -178,8 +180,6 @@ const Dropdown = (props: DropdownProps) => {
       document.removeEventListener('click', handleDocumentClick, false)
       document.removeEventListener('touchend', handleDocumentClick, false)
     }
-    // 最初だけ呼び出す
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

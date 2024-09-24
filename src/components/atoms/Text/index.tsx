@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-import { theme as Theme } from "@/themes";
 import styled from 'styled-components'
 import type { Responsive } from '@/types/styles'
 import {
@@ -91,17 +89,18 @@ const Text = styled.span<TextProps>`
     const finalTheme = theme as AppTheme
     // 변형 스타일에 적용
     if (variant && variants[variant]) {
-      const styles = []
-      !fontSize &&
+      const styles = [];
+      if (!fontSize) {
         styles.push(toPropValue('font-size', variants[variant].fontSize, finalTheme))
-      !letterSpacing &&
-        styles.push(
-          toPropValue('letter-spacing', variants[variant].letterSpacing, finalTheme),
-        )
-      !lineHeight &&
+      }
+      if (!letterSpacing) {
+        styles.push(toPropValue('letter-spacing', variants[variant].letterSpacing, finalTheme))
+      }
+      if (!lineHeight) {
         styles.push(
           toPropValue('line-height', variants[variant].lineHeight, finalTheme),
         )
+      }
       return styles.join('\n')
     }
   }}

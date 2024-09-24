@@ -144,8 +144,12 @@ const Dropzone = (props: DropzoneProps) => {
       ),
     )
 
-    onDrop && onDrop(files)
-    onChange && onChange(files)
+    if (onDrop) {
+      onDrop(files)
+    }
+    if (onChange) {
+      onChange(files)
+    }
   }
 
   // 드래그 상태의 마우스 포인터가 범위 안에 드롭되었을 때
@@ -168,8 +172,9 @@ const Dropzone = (props: DropzoneProps) => {
       )
     }
 
-    onDrop && onDrop(files)
-    onChange && onChange(files)
+    if (onDrop) onDrop(files)
+    if (onChange) onChange(files)
+
   }
 
   // 드래그 상태의 마우스 포인터가 범위 안에 있을 때

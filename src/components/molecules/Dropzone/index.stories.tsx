@@ -56,8 +56,11 @@ export default {
 const Template: StoryFn<typeof Dropzone> = (args) => {
   const [files, setFiles] = useState<File[]>([])
   const handleDrop = (files: File[]) => {
-    setFiles(files)
-    args && args.onDrop && args.onDrop(files)
+    setFiles(files);
+
+    if (args && args.onDrop) {
+      args.onDrop(files)
+    }
   }
 
   const fetchData = async () => {
@@ -74,7 +77,6 @@ const Template: StoryFn<typeof Dropzone> = (args) => {
 
   useEffect(() => {
     fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -90,7 +92,6 @@ const Template: StoryFn<typeof Dropzone> = (args) => {
       </Box>
       <Box>
         {files.map((f, i) => (
-          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={URL.createObjectURL(f)}
             width="100px"
